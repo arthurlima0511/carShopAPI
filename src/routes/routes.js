@@ -52,4 +52,13 @@ routes.get("/car/:year/:make/:model", async (req, res) => {
   }
 });
 
+routes.post("/car/:year/:make/:model", async (req, res) => {
+  try {
+    countingController.incrementCart(req, res);
+  } catch (error) {
+    console.log(`Erro: ${error}`);
+    res.status(500).send(`Erro: ${error}`);
+  }
+});
+
 export default routes;

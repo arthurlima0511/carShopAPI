@@ -23,23 +23,26 @@ export const countingController = {
   },
   incrementCart: async (req, res) => {
     try {
+      console.log(req.params);
       const { year, make, model } = req.params;
       switch (year) {
         case "2020":
-          Car2020.findOneAndUpdate(
+          await Car2020.findOneAndUpdate(
             { make, model },
-            { $inc: { addedToCart: 1 } }
+            { $inc: { addedToCart: 1 } },
+            { new: true }
           );
           break;
         case "2021":
-          Car2021.findOneAndUpdate(
+          await Car2021.findOneAndUpdate(
             { make, model },
-            { $inc: { addedToCart: 1 } }
+            { $inc: { addedToCart: 1 } },
+            { new: true }
           );
           break;
         default:
           res.status(404).send("Ano não encontrado");
-          break;
+          return;
       }
       res.sendStatus(200);
     } catch (error) {

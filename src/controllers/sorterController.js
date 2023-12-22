@@ -12,6 +12,7 @@ export const sorterController = {
       res.status(500).send(`Erro: ${error}`);
     }
   },
+
   moreAddedToCart: async (req, res) => {
     try {
       const cars2020 = await Car2020.find().sort({ addedToCart: -1 });

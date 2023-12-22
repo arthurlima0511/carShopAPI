@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { carController } from "../controllers/carController.js";
 import { sorterController } from "../controllers/sorterController.js";
+import { countingController } from "../controllers/countingController.js";
 
 const routes = new Router();
 
@@ -38,6 +39,16 @@ routes.get("/cars/sorter/:type", async (req, res) => {
     default:
       res.status(404).send("Tipo de ordenação não encontrado");
       break;
+  }
+});
+
+routes.get("/car/:year/:make/:model", async (req, res) => {
+  try {
+    carController.findUnique(req, res);
+    console.log(req.params);
+  } catch (error) {
+    console.log(`Erro: ${error}`);
+    res.status(500).send(`Erro: ${error}`);
   }
 });
 

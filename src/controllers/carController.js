@@ -1,5 +1,4 @@
 import { Car2020, Car2021 } from "../models/carCollection.js";
-import { connectDB } from "../db/conn.js";
 
 export const carController = {
   getAllCars: async (req, res) => {

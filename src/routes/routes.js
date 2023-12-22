@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { carController } from "../controllers/carController.js";
-import { sortController } from "../controllers/sorterController.js";
+import { sorterController } from "../controllers/sorterController.js";
 
 const routes = new Router();
 
@@ -29,11 +29,11 @@ routes.get("/cars/:year", async (req, res) => {
 
 routes.get("/cars/sorter/:type", async (req, res) => {
   switch (req.params.type) {
-    case "mostViewed":
-      sortController.mostViewedSorter(req, res);
+    case "moreViewed":
+      sorterController.moreViewedSorter(req, res);
       break;
     case "moreAddedToCart":
-      sortController.moreAddedToCart(req, res);
+      sorterController.moreAddedToCart(req, res);
       break;
     default:
       res.status(404).send("Tipo de ordenação não encontrado");
